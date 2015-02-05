@@ -88,7 +88,6 @@ internal class ZLibException : IOException, ISerializable {
     /// </summary>
     /// <param name="info">The SerializationInfo  that holds the serialized object data about the exception being thrown.</param>
     /// <param name="context">The StreamingContext  that contains contextual information about the source or destination.</param>
-    [SecurityPermission(SecurityAction.LinkDemand, SerializationFormatter=true)]
     protected ZLibException(SerializationInfo info, StreamingContext context) :
         base(info, context) {
 
@@ -98,7 +97,6 @@ internal class ZLibException : IOException, ISerializable {
         Init(errContext, errCode, errMessage);
     }
         
-    [SecurityPermission(SecurityAction.LinkDemand, SerializationFormatter=true)]
     void ISerializable.GetObjectData(SerializationInfo si, StreamingContext context) {
         base.GetObjectData(si, context);
         si.AddValue("zlibErrorContext", this.zlibErrorContext);
@@ -119,29 +117,14 @@ internal class ZLibException : IOException, ISerializable {
 
     
     public string ZLibContext {
-        #if SILVERLIGHT
-        [SecurityCritical]
-        #else
-        [PermissionSet(SecurityAction.LinkDemand, Unrestricted=true)]
-        #endif
         get { return zlibErrorContext; }
     }
 
     public int ZLibErrorCode {
-        #if SILVERLIGHT
-        [SecurityCritical]
-        #else
-        [PermissionSet(SecurityAction.LinkDemand, Unrestricted=true)]
-        #endif
         get { return (int) zlibErrorCode; }
     }
 
     public string ZLibErrorMessage {
-        #if SILVERLIGHT
-        [SecurityCritical]
-        #else
-        [PermissionSet(SecurityAction.LinkDemand, Unrestricted=true)]
-        #endif
         get { return zlibErrorMessage; }
     }    
 

@@ -114,9 +114,6 @@ namespace System.IO.Compression {
             throw new NotSupportedException(SR.GetString(SR.NotSupported));            
         }
 
-#if !FEATURE_NETCORE
-        [HostProtection(ExternalThreading=true)]
-#endif
         public override IAsyncResult BeginRead(byte[] array, int offset, int count, AsyncCallback asyncCallback, object asyncState) {
             if( deflateStream == null) {
                 throw new InvalidOperationException(SR.GetString(SR.ObjectDisposed_StreamClosed));
@@ -131,9 +128,6 @@ namespace System.IO.Compression {
             return deflateStream.EndRead(asyncResult);
         }
 
-#if !FEATURE_NETCORE
-        [HostProtection(ExternalThreading=true)]
-#endif
         public override IAsyncResult BeginWrite(byte[] array, int offset, int count, AsyncCallback asyncCallback, object asyncState) {
             if( deflateStream == null) {
                 throw new InvalidOperationException(SR.GetString(SR.ObjectDisposed_StreamClosed));

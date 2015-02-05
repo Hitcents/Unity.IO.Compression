@@ -230,17 +230,14 @@ namespace System.IO.Compression
 
                 blockType = (BlockType)input.GetBits(2);
                 if (blockType == BlockType.Dynamic) {
-                    Debug.WriteLineIf(CompressionTracingSwitch.Informational, "Decoding Dynamic Block", "Compression");
                     state = InflaterState.ReadingNumLitCodes;
                 } 
                 else if (blockType == BlockType.Static) {
-                    Debug.WriteLineIf(CompressionTracingSwitch.Informational, "Decoding Static Block", "Compression");
                     literalLengthTree = HuffmanTree.StaticLiteralLengthTree;
                     distanceTree = HuffmanTree.StaticDistanceTree;
                     state = InflaterState.DecodeTop;
                 } 
                 else if (blockType == BlockType.Uncompressed) {
-                    Debug.WriteLineIf(CompressionTracingSwitch.Informational, "Decoding UnCompressed Block", "Compression");
                     state = InflaterState.UncompressedAligning;
                 } 
                 else {
@@ -338,7 +335,6 @@ namespace System.IO.Compression
                         // Done with this block, need to re-init bit buffer for next block
                         state = InflaterState.ReadingBFinal;
                         end_of_block = true;
-                        Debug.WriteLineIf(CompressionTracingSwitch.Informational, "End of Block", "Compression");
                         return true;
                     }
                     
@@ -382,7 +378,6 @@ namespace System.IO.Compression
                     } 
                     else if( symbol == 256) { // end of block
                         end_of_block_code_seen = true;
-                        Debug.WriteLineIf(CompressionTracingSwitch.Informational, "End of Block", "Compression");
                         // Reset state
                         state = InflaterState.ReadingBFinal;                                      
                         return true;           // ***********

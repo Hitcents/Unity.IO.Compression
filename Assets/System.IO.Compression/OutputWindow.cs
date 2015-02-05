@@ -21,7 +21,6 @@ namespace System.IO.Compression
 
         // Add a byte to output window
         public void Write(byte b) {
-            Debug.WriteLineIf(CompressionTracingSwitch.Verbose, String.Format(CultureInfo.InvariantCulture, "Literal: {0}", b), "Compression");
             Debug.Assert(bytesUsed < WindowSize, "Can't add byte when window is full!");
             window[end++] = b;
             end &= WindowMask;
@@ -29,7 +28,6 @@ namespace System.IO.Compression
         }
 
         public void WriteLengthDistance(int length, int distance) {
-            Debug.WriteLineIf(CompressionTracingSwitch.Verbose, String.Format(CultureInfo.InvariantCulture, "Length/Distance: {0}:{1}", length, distance), "Compression");
             Debug.Assert((bytesUsed + length) <= WindowSize, "Not enough space");
 
             // move backwards distance bytes in the output stream, 

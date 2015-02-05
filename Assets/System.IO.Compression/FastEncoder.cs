@@ -133,7 +133,6 @@ namespace System.IO.Compression {
 
         static internal void WriteMatch(int matchLen, int matchPos, OutputBuffer output) {
             Debug.Assert(matchLen >= FastEncoderWindow.MinMatch && matchLen <= FastEncoderWindow.MaxMatch, "Illegal currentMatch length!");
-            Debug.WriteLineIf(CompressionTracingSwitch.Verbose, String.Format(CultureInfo.InvariantCulture, "Match: {0}:{1}", matchLen, matchPos), "Compression");
 
             // Get the code information for a match code
             uint codeInfo = FastEncoderStatics.FastEncoderLiteralCodeInfo[(FastEncoderStatics.NumChars + 1 - FastEncoderWindow.MinMatch) + matchLen];
@@ -157,8 +156,6 @@ namespace System.IO.Compression {
         }
 
         static internal void WriteChar(byte b, OutputBuffer output) {
-            Debug.WriteLineIf(CompressionTracingSwitch.Verbose, String.Format(CultureInfo.InvariantCulture, "Literal: {0}", b ), "Compression");
-
             uint code = FastEncoderStatics.FastEncoderLiteralCodeInfo[b];
             output.WriteBits((int)code & 31, code >> 5);
         }

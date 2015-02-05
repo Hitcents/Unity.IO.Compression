@@ -130,8 +130,8 @@ internal class DeflaterZLib : IDeflater {
         lock (syncLock) {
 
             _inputBufferHandle = GCHandle.Alloc(inputBuffer, GCHandleType.Pinned);
-        
-            _zlibStream.NextIn = _inputBufferHandle.Value.AddrOfPinnedObject() + startIndex;
+
+            _zlibStream.NextIn = (IntPtr)((int)_inputBufferHandle.Value.AddrOfPinnedObject() + startIndex);
             _zlibStream.AvailIn = (uint) count;
         }
     }

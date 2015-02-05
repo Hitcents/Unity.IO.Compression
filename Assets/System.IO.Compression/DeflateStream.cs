@@ -37,7 +37,6 @@ namespace System.IO.Compression {
         private bool wroteBytes;
 
         private enum WorkerType : byte { Managed, ZLib, Unknown };
-        private static volatile WorkerType deflaterType = WorkerType.Unknown;
 
 
         public DeflateStream(Stream stream, CompressionMode mode)
@@ -143,30 +142,7 @@ namespace System.IO.Compression {
         [System.Security.SecuritySafeCritical]
         #endif
         private static WorkerType GetDeflaterType() {
-
-            // Let's not worry about race conditions:
-            // Yes, we risk initialising the singleton multiple times.
-            // However, initialising the singleton multiple times has no bad consequences, and is fairly cheap.
-
-            if (WorkerType.Unknown != deflaterType)
-                return deflaterType;
-                        
-            #if !SILVERLIGHT  // Do this on Desktop.  CLRConfig doesn't exist on CoreSys nor Silverlight.
-
-            // CLRConfig is internal in mscorlib and is a friend
-            if (System.CLRConfig.CheckLegacyManagedDeflateStream())
-                return (deflaterType = WorkerType.Managed);
-
-            #endif
-
-            #if !SILVERLIGHT || FEATURE_NETCORE  // Only skip this for Silverlight, which doesn't ship ZLib.
-
-            if (!CompatibilitySwitches.IsNetFx45LegacyManagedDeflateStream)
-                return (deflaterType = WorkerType.ZLib);
-
-            #endif
-
-            return (deflaterType = WorkerType.Managed);
+            return WorkerType.Managed;
         }
 
         internal void SetFileFormatReader(IFileFormatReader reader) {
@@ -313,9 +289,6 @@ namespace System.IO.Compression {
                 throw new InvalidOperationException(SR.GetString(SR.CannotWriteToDeflateStream));           
         }
 
-#if !FEATURE_NETCORE
-        [HostProtection(ExternalThreading=true)]
-#endif
         public override IAsyncResult BeginRead(byte[] array, int offset, int count, AsyncCallback asyncCallback, object asyncState) {
             
             EnsureDecompressionMode();
@@ -574,9 +547,6 @@ namespace System.IO.Compression {
         }  // Dispose
 
 
-#if !FEATURE_NETCORE
-        [HostProtection(ExternalThreading=true)]
-#endif
         public override IAsyncResult BeginWrite(byte[] array, int offset, int count, AsyncCallback asyncCallback, object asyncState) {
 
             EnsureCompressionMode();            
