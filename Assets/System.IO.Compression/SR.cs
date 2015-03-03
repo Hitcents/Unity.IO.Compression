@@ -28,12 +28,6 @@ namespace System.IO
         public const string UnknownState = "Unknown state";
         public const string UnknownCompressionMode = "Unknown compression mode";
         public const string UnknownBlockType = "Unknown block type";
-        public const string ZLibErrorNotEnoughMemory = "ZLib error: not enough memory";
-        public const string ZLibErrorVersionMismatch = "ZLib error: version mismatch";
-        public const string ZLibErrorIncorrectInitParameters = "ZLib error: incorrect init parameters";
-        public const string ZLibErrorUnexpected = "ZLib error: unexpected";
-        public const string ZLibErrorDLLLoadError = "ZLib error: DLL load error";
-        public const string ZLibErrorInconsistentStream = "ZLib error: inconsistent stream";
 
         private SR()
         {
