@@ -28,7 +28,8 @@ Target "unity" (fun () ->
     File.Copy(Path.Combine(project, "bin", "Release", project + ".dll"), Path.Combine(projectInUnity, project + ".dll"))
     //Copy projectInUnity (Directory.GetFiles(examples))
     //CleanDir examples
-    Unity(projectInUnity)
+    let folder = Path.Combine("Assets", project)
+    Unity("-exportPackage " + folder + " Unity.IO.Compression.unitypackage")
 )
 
 "dll" ==> "unity"
