@@ -12,11 +12,6 @@ let project = "Unity.IO.Compression"
 let projectInUnity = Path.Combine("Assets", project)
 //let examples = Path.Combine("Assets", "Examples")
 
-Target "clean" (fun () ->
-    Exec "git" "reset --hard HEAD"
-    Exec "git" "clean -d -f"
-)
-
 Target "dll" (fun () ->
     let output = Path.Combine(project, "bin", "Release")
     let csproj = Path.Combine(project, project + ".csproj")
