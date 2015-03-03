@@ -1,3 +1,4 @@
+#if !NETFX_CORE
 namespace System.IO.Compression
 {
     interface IFileFormatWriter {
@@ -14,4 +15,4 @@ namespace System.IO.Compression
     }
 
 }
-
+#endif

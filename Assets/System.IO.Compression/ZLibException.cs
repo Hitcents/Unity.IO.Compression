@@ -5,7 +5,7 @@
 ///
 /// <owner>gpaperin</owner>
 ///------------------------------------------------------------------------------
-
+#if !NETFX_CORE
 using System.Runtime.Serialization;
 using System.Security;
 using System.Security.Permissions;
@@ -134,3 +134,4 @@ internal class ZLibException : IOException, ISerializable {
 } // namespace System.IO.Compression
 
 // file ZLibException.cs
+#endif

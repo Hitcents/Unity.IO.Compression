@@ -5,7 +5,7 @@
 ///
 /// <owner>gpaperin</owner>
 ///----------- ----------- ----------- ----------- ----------- ----------- -----------
-
+#if !NETFX_CORE
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
@@ -278,3 +278,4 @@ internal class DeflaterZLib : IDeflater {
 }  // namespace System.IO.Compression
 
 // file DeflaterZLib.cs
+#endif

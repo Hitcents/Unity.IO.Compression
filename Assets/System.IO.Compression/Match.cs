@@ -1,3 +1,4 @@
+#if !NETFX_CORE
 namespace System.IO.Compression {
     // This class represents a match in the history window
     internal class Match {
@@ -29,3 +30,4 @@ namespace System.IO.Compression {
     }
 
 }
+#endif

@@ -6,7 +6,7 @@
 /// <owner>gpaperin</owner>
 ///------------------------------------------------------------------------------
 
-
+#if !NETFX_CORE
 namespace System.IO.Compression {
 
     /// <summary>
@@ -26,3 +26,4 @@ namespace System.IO.Compression {
 }  // namespace System.IO.Compression
 
 // CompressionLevel.cs
+#endif

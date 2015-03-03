@@ -1,3 +1,4 @@
+#if !NETFX_CORE
 namespace System.IO.Compression {
     // Do not rearrange the enum values. 
     internal enum InflaterState {
@@ -35,4 +36,4 @@ namespace System.IO.Compression {
     }
 
 }
-
+#endif

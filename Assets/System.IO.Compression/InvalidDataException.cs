@@ -1,3 +1,4 @@
+#if !NETFX_CORE
 namespace System.IO {
     
     using System;
@@ -27,3 +28,4 @@ namespace System.IO {
 
     }
 }
+#endif

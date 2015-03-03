@@ -18,6 +18,7 @@
 ** while providing separate implementation details for each platform.
 **
 ===========================================================*/
+#if !NETFX_CORE
 #define DEBUG // The behavior of this contract library should be consistent regardless of build type.
 
 #if SILVERLIGHT
@@ -1022,3 +1023,4 @@ namespace System.Runtime.CompilerServices
     }
 }  // namespace System.Runtime.CompilerServices
 
+#endif

@@ -1,3 +1,4 @@
+#if !NETFX_CORE
 namespace System.IO.Compression
 {
     using System.Diagnostics;
@@ -67,3 +68,4 @@ namespace System.IO.Compression
         }
     }
 }
+#endif

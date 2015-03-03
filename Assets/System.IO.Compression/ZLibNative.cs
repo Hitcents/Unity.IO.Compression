@@ -5,7 +5,7 @@
 //
 // <owner>gpaperin</owner>
 //------------------------------------------------------------------------------
-
+#if !NETFX_CORE
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
@@ -811,3 +811,4 @@ internal static class ZLibNative {
 }  // namespace System.IO.Compression
 
 // file ZLibNative.cs
+#endif

@@ -1,3 +1,4 @@
+#if !NETFX_CORE
 namespace System.IO.Compression {
     internal enum BlockType {
         Uncompressed = 0,
@@ -5,4 +6,4 @@ namespace System.IO.Compression {
         Dynamic = 2
     }
 }
-
+#endif

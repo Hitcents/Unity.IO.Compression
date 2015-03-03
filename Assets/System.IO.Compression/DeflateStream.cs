@@ -5,7 +5,7 @@
 ///
 ///----------- ----------- ----------- ----------- ----------- ----------- -----------
 ///
-
+#if !NETFX_CORE
 using System.Diagnostics;
 using System.Threading;
 using System.Security.Permissions;
@@ -647,4 +647,4 @@ namespace System.IO.Compression {
     }  // public class DeflateStream
 
 }  // namespace System.IO.Compression
-
+#endif

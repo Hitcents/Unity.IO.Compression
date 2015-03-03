@@ -27,6 +27,7 @@
 // ==--==
 // Compression engine
 
+#if !NETFX_CORE
 using System;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
@@ -293,3 +294,4 @@ namespace System.IO.Compression {
 
     }  // internal class DeflaterManaged
 }  // namespace System.IO.Compression
+#endif

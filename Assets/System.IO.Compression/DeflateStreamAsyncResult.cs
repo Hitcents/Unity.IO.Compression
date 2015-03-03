@@ -1,3 +1,4 @@
+#if !NETFX_CORE
 namespace System.IO.Compression {
     using System.Threading;
 
@@ -127,4 +128,4 @@ namespace System.IO.Compression {
     }
 
 }
-
+#endif

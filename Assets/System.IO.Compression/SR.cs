@@ -1,6 +1,6 @@
 // Copyright (c) Hitcents
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-
+#if !NETFX_CORE
 namespace System.IO
 {
     /// <summary>
@@ -46,3 +46,4 @@ namespace System.IO
         }
     }
 }
+#endif

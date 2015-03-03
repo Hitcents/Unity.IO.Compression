@@ -1,6 +1,6 @@
 
 using System.Diagnostics.Contracts;
-
+#if !NETFX_CORE
 namespace System.IO.Compression {
 
     internal interface IDeflater : IDisposable {
@@ -10,3 +10,4 @@ namespace System.IO.Compression {
         bool Finish(byte[] outputBuffer, out int bytesRead);
     }
 }
+#endif
