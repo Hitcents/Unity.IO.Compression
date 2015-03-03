@@ -36,7 +36,7 @@ namespace System.IO.Compression {
         private bool wroteHeader;
         private bool wroteBytes;
 
-        private enum WorkerType : byte { Managed, ZLib, Unknown };
+        private enum WorkerType : byte { Managed, Unknown };
 
 
         public DeflateStream(Stream stream, CompressionMode mode)
@@ -124,12 +124,6 @@ namespace System.IO.Compression {
 
                 case WorkerType.Managed:
                     return new DeflaterManaged();
-
-                case WorkerType.ZLib:
-                    if (compressionLevel.HasValue)
-                        return new DeflaterZLib(compressionLevel.Value);
-                    else
-                        return new DeflaterZLib();
 
                 default:
                     // We do not expect this to ever be thrown.
