@@ -23,21 +23,6 @@ namespace Unity.IO.Compression {
         }
 
 
-        // Implies mode = Compress
-        public GZipStream(Stream stream, CompressionLevel compressionLevel)
-
-            : this(stream, compressionLevel, false) {
-        }
-
-
-        // Implies mode = Compress
-        public GZipStream(Stream stream, CompressionLevel compressionLevel, bool leaveOpen) {
-
-            deflateStream = new DeflateStream(stream, compressionLevel, leaveOpen);
-            SetDeflateStreamFileFormatter(CompressionMode.Compress);
-        }
-
-
         private void SetDeflateStreamFileFormatter(CompressionMode mode) {
 
             if (mode == CompressionMode.Compress) {

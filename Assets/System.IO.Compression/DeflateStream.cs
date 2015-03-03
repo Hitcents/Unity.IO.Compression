@@ -76,7 +76,7 @@ namespace Unity.IO.Compression {
                         throw new ArgumentException(SR.GetString(SR.NotWriteableStream), "stream");
                     }
 
-                    deflater = CreateDeflater(null);
+                    deflater = CreateDeflater();
                     
                     m_AsyncWriterDelegate = new AsyncWriteDelegate(this.InternalWrite);
                     m_CallBack = new AsyncCallback(WriteCallback); 
@@ -87,40 +87,9 @@ namespace Unity.IO.Compression {
 
             buffer = new byte[DefaultBufferSize];
         }
+    
 
-        // Implies mode = Compress
-        public DeflateStream(Stream stream, CompressionLevel compressionLevel)
-
-            : this(stream, compressionLevel, false) {
-        }
-
-        // Implies mode = Compress
-        public DeflateStream(Stream stream, CompressionLevel compressionLevel, bool leaveOpen) {
-
-            if (stream == null)
-                throw new ArgumentNullException("stream");
-
-            if (!stream.CanWrite)
-                throw new ArgumentException(SR.GetString(SR.NotWriteableStream), "stream");
-
-            // Checking of compressionLevel is passed down to the IDeflater implementation as it
-            // is a pluggable component that completely encapsulates the meaning of compressionLevel.
-            
-            Contract.EndContractBlock();
-
-            _stream = stream;
-            _mode = CompressionMode.Compress;
-            _leaveOpen = leaveOpen;
-
-            deflater = CreateDeflater(compressionLevel);
-
-            m_AsyncWriterDelegate = new AsyncWriteDelegate(this.InternalWrite);
-            m_CallBack = new AsyncCallback(WriteCallback);
-           
-            buffer = new byte[DefaultBufferSize];
-        }        
-
-        private static IDeflater CreateDeflater(CompressionLevel? compressionLevel) {
+        private static IDeflater CreateDeflater() {
 
             switch (GetDeflaterType()) {
 

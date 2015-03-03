@@ -7,54 +7,37 @@ public class GZipStreamTests
 {
     private string Text = "This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this.";
 
-    [Test]
-    public void GZipFastest()
+    private byte[] CompressToArray()
     {
         using (var memoryStream = new MemoryStream())
         {
-            using (var gzipStream = new GZipStream(memoryStream, CompressionLevel.Fastest))
+            using (var gzipStream = new GZipStream(memoryStream, CompressionMode.Compress))
             using (var writer = new StreamWriter(gzipStream))
             {
                 writer.Write(Text);
             }
-            memoryStream.Flush();
-
-            var bytes = memoryStream.ToArray();
-            Assert.AreEqual(235, bytes.Length);
+            return memoryStream.ToArray();
         }
     }
 
     [Test]
-    public void GZipOptimal()
+    public void Compress()
     {
-        using (var memoryStream = new MemoryStream())
-        {
-            using (var gzipStream = new GZipStream(memoryStream, CompressionLevel.Optimal))
-            using (var writer = new StreamWriter(gzipStream))
-            {
-                writer.Write(Text);
-            }
-            memoryStream.Flush();
-
-            var bytes = memoryStream.ToArray();
-            Assert.AreEqual(235, bytes.Length);
-        }
+        var bytes = CompressToArray();
+        Assert.AreEqual(235, bytes.Length);
     }
 
     [Test]
-    public void GZipNoCompression()
+    public void Decompress()
     {
-        using (var memoryStream = new MemoryStream())
-        {
-            using (var gzipStream = new GZipStream(memoryStream, CompressionLevel.NoCompression))
-            using (var writer = new StreamWriter(gzipStream))
-            {
-                writer.Write(Text);
-            }
-            memoryStream.Flush();
+        var bytes = CompressToArray();
 
-            var bytes = memoryStream.ToArray();
-            Assert.AreEqual(235, bytes.Length);
+        using (var memoryStream = new MemoryStream(bytes))
+        using (var gzipStream = new GZipStream(memoryStream, CompressionMode.Decompress))
+        using (var reader = new StreamReader(gzipStream))
+        {
+            string text = reader.ReadToEnd();
+            Assert.AreEqual(Text, text);
         }
     }
 }
