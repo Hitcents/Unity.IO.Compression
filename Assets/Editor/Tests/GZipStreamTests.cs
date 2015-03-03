@@ -1,13 +1,11 @@
-﻿using System.IO;
+﻿using NUnit.Framework;
+using System.IO;
 using Unity.IO.Compression;
-using NUnit.Framework;
 
 [TestFixture]
-public class GZipStreamTests 
+public class GZipStreamTests : BaseStreamTests
 {
-    private string Text = "This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this. This is example text that we might want to GZip because it is really long and weird. I would be embarrassed to read this.";
-
-    private byte[] CompressToArray()
+    protected override byte[] CompressToArray()
     {
         using (var memoryStream = new MemoryStream())
         {
@@ -38,6 +36,20 @@ public class GZipStreamTests
         {
             string text = reader.ReadToEnd();
             Assert.AreEqual(Text, text);
+        }
+    }
+
+    [Test]
+    public void WebRequest()
+    {
+        var bytes = GetHttpBin("http://httpbin.org/gzip");
+
+        using (var memoryStream = new MemoryStream(bytes))
+        using (var gzipStream = new GZipStream(memoryStream, CompressionMode.Decompress))
+        using (var reader = new StreamReader(gzipStream))
+        {
+            string text = reader.ReadToEnd();
+            Assert.IsTrue(text.Contains("\"gzipped\": true"), "Request was not compressed!");
         }
     }
 }
