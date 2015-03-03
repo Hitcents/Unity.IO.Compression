@@ -10,7 +10,7 @@ open Fake.XamarinHelper
 let version = "1.0.0"
 let project = "Unity.IO.Compression"
 let projectInUnity = Path.Combine("Assets", project)
-let examples = Path.Combine("Assets", "Examples")
+//let examples = Path.Combine("Assets", "Examples")
 
 Target "clean" (fun () ->
     Exec "git" "reset --hard HEAD"
@@ -26,8 +26,8 @@ Target "dll" (fun () ->
 Target "unity" (fun () ->
     CleanDir projectInUnity
     File.Copy(Path.Combine(project, "bin", "Release", project + ".dll"), Path.Combine(projectInUnity, project + ".dll"))
-    Copy projectInUnity (Directory.GetFiles(examples))
-    CleanDir examples
+    //Copy projectInUnity (Directory.GetFiles(examples))
+    //CleanDir examples
     Unity(projectInUnity)
 )
 
