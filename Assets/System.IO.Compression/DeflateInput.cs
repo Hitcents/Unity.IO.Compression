@@ -1,5 +1,5 @@
 #if !NETFX_CORE
-namespace System.IO.Compression {
+namespace Unity.IO.Compression {
     using System.Diagnostics;
 
     internal class DeflateInput {

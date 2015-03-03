@@ -1,5 +1,5 @@
 #if !NETFX_CORE
-namespace System.IO.Compression {
+namespace Unity.IO.Compression {
     // This class represents a match in the history window
     internal class Match {
         private MatchState state;

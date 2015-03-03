@@ -6,12 +6,14 @@
 ///----------- ----------- ----------- ----------- ----------- ----------- -----------
 ///
 #if !NETFX_CORE
+using System;
+using System.IO;
 using System.Diagnostics;
 using System.Threading;
 using System.Security.Permissions;
 using System.Diagnostics.Contracts;
 
-namespace System.IO.Compression {
+namespace Unity.IO.Compression {
    
     public class DeflateStream : Stream {
 
@@ -640,5 +642,5 @@ namespace System.IO.Compression {
 
     }  // public class DeflateStream
 
-}  // namespace System.IO.Compression
+}  // namespace Unity.IO.Compression
 #endif

@@ -1,5 +1,6 @@
 #if !NETFX_CORE
-namespace System.IO.Compression {
+namespace Unity.IO.Compression {
+    using System;
     using System.Threading;
 
     internal class DeflateStreamAsyncResult : IAsyncResult {

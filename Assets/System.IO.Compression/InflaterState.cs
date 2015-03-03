@@ -1,5 +1,5 @@
 #if !NETFX_CORE
-namespace System.IO.Compression {
+namespace Unity.IO.Compression {
     // Do not rearrange the enum values. 
     internal enum InflaterState {
         ReadingHeader = 0,           // Only applies to GZIP

@@ -1,5 +1,5 @@
 #if !NETFX_CORE
-namespace System.IO {
+namespace Unity.IO {
     
     using System;
     using System.Runtime.Serialization;

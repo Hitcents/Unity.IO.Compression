@@ -1,7 +1,7 @@
-
+using System;
 using System.Diagnostics.Contracts;
 #if !NETFX_CORE
-namespace System.IO.Compression {
+namespace Unity.IO.Compression {
 
     internal interface IDeflater : IDisposable {
         [Pure] bool NeedsInput();

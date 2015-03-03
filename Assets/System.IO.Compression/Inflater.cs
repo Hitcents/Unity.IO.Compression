@@ -26,7 +26,7 @@
 //
 // ==--==
 #if !NETFX_CORE
-namespace System.IO.Compression
+namespace Unity.IO.Compression
 {
     using System;
     using System.Diagnostics;

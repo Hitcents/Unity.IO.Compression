@@ -1,6 +1,6 @@
 //   Copyright (c) Microsoft Corporation.  All rights reserved.
 #if !NETFX_CORE
-namespace System.IO.Compression {
+namespace Unity.IO.Compression {
     using System.Diagnostics;
 
     internal static class GZipConstants {

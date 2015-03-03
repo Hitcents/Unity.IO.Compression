@@ -7,7 +7,7 @@
 ///------------------------------------------------------------------------------
 
 #if !NETFX_CORE
-namespace System.IO.Compression {
+namespace Unity.IO.Compression {
 
     /// <summary>
     /// Defines a tradeoff between fast vs. strong compression. The specific meaning depends of the Deflater implementation.
@@ -23,7 +23,7 @@ namespace System.IO.Compression {
 
     }  // internal enum CompressionLevel
 
-}  // namespace System.IO.Compression
+}  // namespace Unity.IO.Compression
 
 // CompressionLevel.cs
 #endif
