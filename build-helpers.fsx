@@ -1,0 +1,35 @@
+module BuildHelpers
+#r @"packages/FAKE.3.5.4/tools/FakeLib.dll"
+open Fake
+open Fake.XamarinHelper
+open System
+open System.IO
+open System.Linq
+
+let Exec command args =
+    let result = Shell.Exec(command, args)
+    if result <> 0 then failwithf "%s exited with error %d" command result
+
+let RestorePackages solutionFile =
+    Exec ".nuget/NuGet.exe" ("restore " + solutionFile)
+
+let RunNUnitTests dllPath xmlPath =
+    Exec "/Library/Frameworks/Mono.framework/Versions/Current/bin/nunit-console4" (dllPath + " -xml=" + xmlPath)
+    TeamCityHelper.sendTeamCityNUnitImport xmlPath
+
+let TestFlightUpload project apiToken teamToken distList =
+    let binFolder = Path.Combine(project, "bin", "iPhone", "Ad-Hoc")
+    let ipa = Path.Combine(binFolder, project + ".ipa")
+    let notes = Path.Combine(project, "RELEASE-NOTES.txt")
+    Exec "curl" ("https://testflightapp.com/api/builds.json -F file=@" + ipa + " -F api_token=" + apiToken + " -F team_token=" + teamToken + " -F notes=@" + notes + " -F notify=False -F distribution_lists='" + distList + "'")
+
+let UpdatePlist version project =
+    let build = environVarOrDefault "BUILD_NUMBER" ""
+    if not(String.IsNullOrEmpty(build)) then do
+        let info = Path.Combine(project, "Info.plist")
+        let finalVersion = version + "." + build
+        Exec "/usr/libexec/PlistBuddy" ("-c 'Set :CFBundleVersion " + finalVersion + "' " + info)
+
+let Unity folder =
+    let fullPath = Path.GetFullPath(".")
+    Exec "/Applications/Unity/Unity.app/Contents/MacOS/Unity" ("-quit -batchmode -logFile -projectPath '" + fullPath + "' -exportPackage " + folder + " iOS4Unity.unitypackage")
