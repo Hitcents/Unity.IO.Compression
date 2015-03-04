@@ -1,5 +1,4 @@
 using System;
-#if !NETFX_CORE
 namespace Unity.IO.Compression {
 
     internal interface IDeflater : IDisposable {
@@ -9,4 +8,3 @@ namespace Unity.IO.Compression {
         bool Finish(byte[] outputBuffer, out int bytesRead);
     }
 }
-#endif

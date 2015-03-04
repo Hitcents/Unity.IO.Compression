@@ -1,4 +1,3 @@
-#if !NETFX_CORE
 namespace Unity.IO.Compression {
     using System;
     using System.Diagnostics;
@@ -389,5 +388,4 @@ namespace Unity.IO.Compression {
         }
     }
 }
-#endif
 

@@ -1,4 +1,3 @@
-#if !NETFX_CORE
 namespace Unity.IO.Compression {
     // Do not rearrange the enum values. 
     internal enum InflaterState {
@@ -36,4 +35,3 @@ namespace Unity.IO.Compression {
     }
 
 }
-#endif

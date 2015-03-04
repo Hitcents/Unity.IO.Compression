@@ -1,4 +1,3 @@
-#if !NETFX_CORE
 namespace Unity.IO.Compression
 {
     interface IFileFormatWriter {
@@ -15,4 +14,3 @@ namespace Unity.IO.Compression
     }
 
 }
-#endif

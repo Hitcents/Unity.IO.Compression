@@ -5,7 +5,6 @@
 ///
 ///----------- ----------- ----------- ----------- ----------- ----------- -----------
 ///
-#if !NETFX_CORE
 using System;
 using System.IO;
 using System.Diagnostics;
@@ -611,4 +610,3 @@ namespace Unity.IO.Compression {
     }  // public class DeflateStream
 
 }  // namespace Unity.IO.Compression
-#endif

@@ -1,4 +1,3 @@
-#if !NETFX_CORE
 namespace Unity.IO.Compression {
     // This class represents a match in the history window
     internal class Match {
@@ -30,4 +29,3 @@ namespace Unity.IO.Compression {
     }
 
 }
-#endif

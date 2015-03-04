@@ -1,4 +1,3 @@
-#if !NETFX_CORE
 namespace Unity.IO {
     
     using System;
@@ -28,4 +27,3 @@ namespace Unity.IO {
 
     }
 }
-#endif

@@ -1,4 +1,3 @@
-#if !NETFX_CORE
 namespace Unity.IO.Compression {
     using System;
     using System.Threading;
@@ -129,4 +128,3 @@ namespace Unity.IO.Compression {
     }
 
 }
-#endif

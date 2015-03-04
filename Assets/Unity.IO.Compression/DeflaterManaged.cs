@@ -27,7 +27,6 @@
 // ==--==
 // Compression engine
 
-#if !NETFX_CORE
 using System;
 using System.Diagnostics;
 
@@ -293,4 +292,3 @@ namespace Unity.IO.Compression {
 
     }  // internal class DeflaterManaged
 }  // namespace Unity.IO.Compression
-#endif

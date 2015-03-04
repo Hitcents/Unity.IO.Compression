@@ -1,5 +1,4 @@
 //   Copyright (c) Microsoft Corporation.  All rights reserved.
-#if !NETFX_CORE
 namespace Unity.IO.Compression {
     using System.Diagnostics;
 
@@ -86,4 +85,3 @@ namespace Unity.IO.Compression {
 
 
 }
-#endif

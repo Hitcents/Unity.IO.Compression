@@ -1,6 +1,5 @@
 // Copyright (c) Hitcents
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-#if !NETFX_CORE
 namespace Unity.IO
 {
     /// <summary>
@@ -40,4 +39,3 @@ namespace Unity.IO
         }
     }
 }
-#endif
