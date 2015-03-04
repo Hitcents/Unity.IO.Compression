@@ -1,4 +1,4 @@
-namespace Unity.IO {
+namespace Unity.IO.Compression {
     
     using System;
     using System.Runtime.Serialization;

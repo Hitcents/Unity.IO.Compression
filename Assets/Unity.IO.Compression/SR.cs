@@ -1,7 +1,6 @@
 // Copyright (c) Hitcents
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-namespace Unity.IO
-{
+namespace Unity.IO.Compression {
     /// <summary>
     /// NOTE: this is a hacked in replacement for the SR class
     ///     Unity games don't care about localized exception messages, so we just hacked these in the best we could
