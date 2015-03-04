@@ -40,25 +40,11 @@
   <ItemGroup>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
-    <Reference Include="System.XML" />
-    <Reference Include="System.Core" />
-    <Reference Include="Boo.Lang" />
-    <Reference Include="UnityScript.Lang" />
-    <Reference Include="UnityEngine">
-      <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Assets\Unity.IO.Compression\*.cs">
       <Link>*.cs</Link>
     </Compile>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
