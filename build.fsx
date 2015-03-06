@@ -13,7 +13,7 @@ let package = project + ".unitypackage"
 let testResults = "TestResults.xml"
 
 Target "tests" (fun () ->
-    Unity("-executeMethod UnityTest.Batch.RunUnitTests -resultFilePath " + testResults)
+    Unity("-executeMethod UnityTest.Batch.RunUnitTests -resultFilePath=" + testResults)
     sendTeamCityNUnitImport testResults
 )
 
