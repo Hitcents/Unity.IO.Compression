@@ -96,7 +96,11 @@ namespace Unity.IO.Compression {
                 default:
                     // We do not expect this to ever be thrown.
                     // But this is better practice than returning null.
+                    #if NETFX_CORE
+                    throw new Exception("Program entered an unexpected state.");
+                    #else
                     throw new SystemException("Program entered an unexpected state.");
+                    #endif
             }
         }
 
@@ -298,6 +302,7 @@ namespace Unity.IO.Compression {
                 throw;
             }
         }
+#endif
 
         // callback function for asynchrous reading on base stream
         private void ReadCallback(IAsyncResult baseStreamResult) {
@@ -339,6 +344,7 @@ namespace Unity.IO.Compression {
             }
         }
 
+#if !NETFX_CORE
         public override int EndRead(IAsyncResult asyncResult) {
 
             EnsureDecompressionMode();
@@ -540,6 +546,7 @@ namespace Unity.IO.Compression {
                 throw;
             }
         }
+#endif
 
         // Callback function for asynchrous reading on base stream
         private void WriteCallback(IAsyncResult asyncResult) {
@@ -559,6 +566,7 @@ namespace Unity.IO.Compression {
             outerResult.InvokeCallback(null);              
         }
 
+#if !NETFX_CORE
         public override void EndWrite(IAsyncResult asyncResult) {
 
             EnsureCompressionMode();

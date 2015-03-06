@@ -147,7 +147,7 @@ namespace Unity.IO.Compression {
         protected override void Dispose(bool disposing) {
             try {
                 if (disposing && deflateStream != null) {
-                    deflateStream.Close();
+                    deflateStream.Dispose();
                 }
                 deflateStream = null;
             }

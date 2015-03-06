@@ -88,9 +88,11 @@ namespace Unity.IO.Compression {
         }
 
         internal void Close() {
+#if !NETFX_CORE
             if (m_Event != null) {
                 ((ManualResetEvent)m_Event).Close();
             }
+#endif
         }
 
         internal void InvokeCallback(bool completedSynchronously, object result) {
