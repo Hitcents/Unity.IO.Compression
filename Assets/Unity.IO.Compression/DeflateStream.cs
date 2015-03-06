@@ -251,6 +251,7 @@ namespace Unity.IO.Compression {
                 throw new InvalidOperationException(SR.GetString(SR.CannotWriteToDeflateStream));           
         }
 
+#if !NETFX_CORE
         public override IAsyncResult BeginRead(byte[] array, int offset, int count, AsyncCallback asyncCallback, object asyncState) {
             
             EnsureDecompressionMode();
@@ -357,6 +358,7 @@ namespace Unity.IO.Compression {
 
             return (int) deflateStrmAsyncResult.Result;
         }
+#endif
 
         public override void Write(byte[] array, int offset, int count) {
             EnsureCompressionMode();
@@ -508,7 +510,7 @@ namespace Unity.IO.Compression {
             }  // finally
         }  // Dispose
 
-
+#if !NETFX_CORE
         public override IAsyncResult BeginWrite(byte[] array, int offset, int count, AsyncCallback asyncCallback, object asyncState) {
 
             EnsureCompressionMode();            
@@ -574,6 +576,7 @@ namespace Unity.IO.Compression {
                 throw previousException;
             }
         }
+#endif
 
         private void CheckEndXxxxLegalStateAndParams(IAsyncResult asyncResult) {
 

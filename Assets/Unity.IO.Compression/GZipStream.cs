@@ -98,6 +98,7 @@ namespace Unity.IO.Compression {
             throw new NotSupportedException(SR.GetString(SR.NotSupported));            
         }
 
+#if !NETFX_CORE
         public override IAsyncResult BeginRead(byte[] array, int offset, int count, AsyncCallback asyncCallback, object asyncState) {
             if( deflateStream == null) {
                 throw new InvalidOperationException(SR.GetString(SR.ObjectDisposed_StreamClosed));
@@ -125,6 +126,7 @@ namespace Unity.IO.Compression {
             }
             deflateStream.EndWrite(asyncResult);
         }
+#endif
 
         public override int Read(byte[] array, int offset, int count) {
             if( deflateStream == null) {
