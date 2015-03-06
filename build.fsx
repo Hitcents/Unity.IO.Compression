@@ -23,4 +23,6 @@ Target "unity" (fun () ->
     TeamCityHelper.PublishArtifact package
 )
 
+"tests" ==> "unity"
+
 RunTarget()

@@ -25,3 +25,6 @@ packages
 #Test Results
 UnitTestResults.xml
 TestResults.xml
+
+#Unity export
+*.unitypackage
