@@ -28,8 +28,10 @@ namespace Unity.IO.Compression {
         private byte[] buffer;
         
         private int asyncOperations; 
+        #if !NETFX_CORE
         private readonly AsyncCallback m_CallBack;
         private readonly AsyncWriteDelegate m_AsyncWriterDelegate;
+        #endif
 
         private IFileFormatWriter formatWriter;
         private bool wroteHeader;
@@ -64,7 +66,9 @@ namespace Unity.IO.Compression {
 
                     inflater = new Inflater();
 
+#if !NETFX_CORE
                     m_CallBack = new AsyncCallback(ReadCallback); 
+#endif
                     break;
 
                 case CompressionMode.Compress:
@@ -75,8 +79,10 @@ namespace Unity.IO.Compression {
 
                     deflater = CreateDeflater();
                     
+#if !NETFX_CORE
                     m_AsyncWriterDelegate = new AsyncWriteDelegate(this.InternalWrite);
                     m_CallBack = new AsyncCallback(WriteCallback); 
+#endif
 
                     break;                        
 
@@ -302,7 +308,6 @@ namespace Unity.IO.Compression {
                 throw;
             }
         }
-#endif
 
         // callback function for asynchrous reading on base stream
         private void ReadCallback(IAsyncResult baseStreamResult) {
@@ -344,7 +349,6 @@ namespace Unity.IO.Compression {
             }
         }
 
-#if !NETFX_CORE
         public override int EndRead(IAsyncResult asyncResult) {
 
             EnsureDecompressionMode();
@@ -546,7 +550,6 @@ namespace Unity.IO.Compression {
                 throw;
             }
         }
-#endif
 
         // Callback function for asynchrous reading on base stream
         private void WriteCallback(IAsyncResult asyncResult) {
@@ -566,7 +569,6 @@ namespace Unity.IO.Compression {
             outerResult.InvokeCallback(null);              
         }
 
-#if !NETFX_CORE
         public override void EndWrite(IAsyncResult asyncResult) {
 
             EnsureCompressionMode();
@@ -584,7 +586,6 @@ namespace Unity.IO.Compression {
                 throw previousException;
             }
         }
-#endif
 
         private void CheckEndXxxxLegalStateAndParams(IAsyncResult asyncResult) {
 
@@ -616,6 +617,7 @@ namespace Unity.IO.Compression {
                 asyncResult.Close();  // this will just close the wait handle
             }
         }
+#endif
 
     }  // public class DeflateStream
 
