@@ -407,11 +407,15 @@ namespace Unity.IO.Compression {
             Debug.Assert(array != null);
             Debug.Assert(count != 0);
 
+#if !NETFX_CORE
             if (isAsync) {
                 IAsyncResult result = _stream.BeginWrite(array, offset, count, null, null);
                 _stream.EndWrite(result);
 
-            } else {
+            } 
+            else 
+#endif          
+            {
                 _stream.Write(array, offset, count);
             }
         }
@@ -500,7 +504,7 @@ namespace Unity.IO.Compression {
                 try {                    
 
                     if(disposing && !_leaveOpen && _stream != null) 
-                        _stream.Close();                    
+                        _stream.Dispose();                    
 
                 } finally {
 
