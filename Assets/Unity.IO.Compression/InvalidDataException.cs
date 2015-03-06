@@ -3,7 +3,7 @@ namespace Unity.IO.Compression {
     using System;
     using System.Runtime.Serialization;
 
-#if !FEATURE_NETCORE
+#if !NETFX_CORE
     [Serializable] 
 #endif // !FEATURE_NETCORE
     public sealed class InvalidDataException
@@ -24,11 +24,11 @@ namespace Unity.IO.Compression {
         public InvalidDataException (String message, Exception innerException) 
             : base(message, innerException) {
         }
-    
-#if !FEATURE_NETCORE
+
+#if !NETFX_CORE
         internal InvalidDataException (SerializationInfo info, StreamingContext context) : base(info, context) {
         }
-#endif // !FEATURE_NETCORE
+#endif // !NETFX_CORE
 
     }
 }
