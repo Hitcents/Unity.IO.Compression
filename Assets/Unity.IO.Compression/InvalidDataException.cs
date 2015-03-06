@@ -6,7 +6,12 @@ namespace Unity.IO.Compression {
 #if !FEATURE_NETCORE
     [Serializable] 
 #endif // !FEATURE_NETCORE
-    public sealed class InvalidDataException : SystemException
+    public sealed class InvalidDataException
+#if NETFX_CORE
+        : Exception
+#else
+        : SystemException
+#endif
     {
         public InvalidDataException () 
             : base(SR.GetString(SR.GenericInvalidData)) {
