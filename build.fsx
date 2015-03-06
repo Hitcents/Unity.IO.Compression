@@ -9,24 +9,20 @@ open Fake.XamarinHelper
 
 let version = "1.0.0"
 let project = "Unity.IO.Compression"
-let projectInUnity = Path.Combine("Assets", project)
-//let examples = Path.Combine("Assets", "Examples")
+let package = project + ".unitypackage"
+let testResults = "TestResults.xml"
 
-Target "dll" (fun () ->
-    let output = Path.Combine(project, "bin", "Release")
-    let csproj = Path.Combine(project, project + ".csproj")
-    MSBuild output "Build" [ ("Configuration", "Release") ] [ csproj ] |> ignore
+Target "tests" (fun () ->
+    Unity("-executeMethod UnityTest.Batch.RunUnitTests -resultFilePath " + testResults)
+    sendTeamCityNUnitImport testResults
 )
 
 Target "unity" (fun () ->
-    CleanDir projectInUnity
-    File.Copy(Path.Combine(project, "bin", "Release", project + ".dll"), Path.Combine(projectInUnity, project + ".dll"))
-    //Copy projectInUnity (Directory.GetFiles(examples))
-    //CleanDir examples
     let folder = Path.Combine("Assets", project)
-    Unity("-exportPackage " + folder + " Unity.IO.Compression.unitypackage")
+    Unity("-exportPackage " + folder + " " + package)
+    TeamCityHelper.PublishArtifact package
 )
 
-"dll" ==> "unity"
+"tests" ==> "unity"
 
 RunTarget()
